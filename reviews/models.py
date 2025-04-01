@@ -5,7 +5,7 @@ from books.models import Book
 class Reviews(models.Model):
     name = models.CharField(max_length=255)
     ratings = models.PositiveIntegerField(blank=True, null=True)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    books = models.ManyToManyField(Book)
     description = models.TextField()
     
     created_date = models.DateTimeField(auto_now_add=True)

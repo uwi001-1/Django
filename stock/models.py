@@ -5,7 +5,7 @@ from books.models import Book
 class Stock(models.Model):
     name = models.CharField(max_length=255)
     quantity = models.PositiveIntegerField(default=0)
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.OneToOneField(Book, on_delete=models.CASCADE)
 
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
