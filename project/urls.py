@@ -17,6 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from rest_framework import routers
+from books.routers.routers import router as book_router
+
+router = routers.DefaultRouter()
+router.registry.extend(book_router.registry)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    
 ]
