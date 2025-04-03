@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from ..models import Stock
 from ..serializers.stock_serializers import StockListSerializers, StockRetrieveSerializers, StockWriteSerializers
 
-class bookViewsets(viewsets.ModelViewSet):
+class stockViewsets(viewsets.ModelViewSet):
     serializer_class = StockListSerializers
     queryset = Stock.objects.all().order_by('-id')
 

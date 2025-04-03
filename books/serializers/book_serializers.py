@@ -1,12 +1,28 @@
 from rest_framework import serializers
 from ..models import Book
+from genre.models import Genre
+from author.models import Author
+
+class GenreSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Genre
+        fields = ['id', 'genre_name']
+        ref_name = 'genre_book'
+
+class AuthorSerializers(serializers.ModelSerializer):
+    class Meta:
+        model = Author
+        fields = ['id', 'author_name']
 
 class BookListSerializers(serializers.ModelSerializer):
+    genre = GenreSerializers(read_only = True)
+    author = AuthorSerializers(read_only = True)
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ['id', 'slug', 'title', 'genre', 'author']
 
 class BookRetrieveSerializers(serializers.ModelSerializer):
+    genre = GenreSerializers(read_only = True)
     class Meta:
         model = Book
         fields = '__all__'

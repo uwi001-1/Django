@@ -16,3 +16,4 @@ class bookViewsets(viewsets.ModelViewSet):
         elif self.action == 'retrieve':
             return BookRetrieveSerializers
         return super().get_serializer_class()
+    
