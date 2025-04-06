@@ -2,9 +2,12 @@ from rest_framework import viewsets
 from ..models import Stock
 from ..serializers.stock_serializers import StockListSerializers, StockRetrieveSerializers, StockWriteSerializers
 
+from utilities.pagination import MyPageNumberPagination
+
 class stockViewsets(viewsets.ModelViewSet):
     serializer_class = StockListSerializers
     queryset = Stock.objects.all().order_by('-id')
+    pagination_class = MyPageNumberPagination
 
     def get_queryset(self):
         queryset = super().get_queryset()
