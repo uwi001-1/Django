@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from ..models import Genre
 from ..serializers.genre_serializers import GenreListSerializers, GenreRetrieveSerializers, GenreWriteSerializers
 
-from utilities.pagination import MyPageNumberPagination
+from ..utilities.pagination import MyPageNumberPagination
 
 class genreViewsets(viewsets.ModelViewSet):
     serializer_class = GenreListSerializers

@@ -37,13 +37,13 @@ router.registry.extend(stock_router.registry)
 
 schema_view = get_schema_view(
    openapi.Info(
-      title="Library API",
-      default_version='v1',
+      title="Kripa's Library API",
+      default_version='v2',
       description="Library Backend System",
       terms_of_service="https://www.google.com/policies/terms/",
-      contact=openapi.Contact(email="prashantkarna21@gmail.com"),
+      contact=openapi.Contact(email="kripahayanju@gmail.com"),
       license=openapi.License(name="No License"),
-      **{'x-logo': {'url': 'https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_120x44dp.png'}},
+      **{'x-logo': {'url': '  '}},
    ),
    public=True,
    permission_classes=[permissions.AllowAny],
@@ -52,8 +52,11 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     # API Authentication
-    path('v1/api-auth/', include('rest_framework.urls')),
+    path('api/api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path('api/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc')
 ]
+
+
+# http://127.0.0.1:8000/api   Base URL

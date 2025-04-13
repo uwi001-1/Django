@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drf_yasg',
+    '',
     'rest_framework',
     'author',
     'books',
@@ -45,6 +46,13 @@ INSTALLED_APPS = [
     'reviews',
     'stock',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+}
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,11 +87,17 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
+import os
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',      #SQLite Backend
-        'NAME': BASE_DIR / 'db.sqlite3',
+    #     'ENGINE': 'django.db.backends.sqlite3',      #SQLite Backend
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE' : os.getenv('django.db.backends.postgresql'), #DATABASE_ENGINE
+        'NAME' : os.getenv('skillshikshya'), #DATABASE_NAME
+        'USER' : os.getenv('postgres'),  #DATABASE_USER
+        'PASSWORD' : os.getenv('root'),   #DATABASE_USER
+        'HOST' : os.getenv('localhost'),   #DATABASE_HOST
+        'PORT' : os.getenv('5432'),    #DATABASE_PORT
     }
 }
 

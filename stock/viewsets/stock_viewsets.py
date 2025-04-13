@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from ..models import Stock
 from ..serializers.stock_serializers import StockListSerializers, StockRetrieveSerializers, StockWriteSerializers
 
-from utilities.pagination import MyPageNumberPagination
+from ..utilities.pagination import MyPageNumberPagination
 
 class stockViewsets(viewsets.ModelViewSet):
     serializer_class = StockListSerializers

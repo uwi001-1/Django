@@ -2,7 +2,7 @@ from rest_framework import viewsets
 from ..models import Reviews
 from ..serializers.reviews_serializers import ReviewsListSerializers, ReviewsRetrieveSerializers, ReviewsWriteSerializers
 
-from utilities.pagination import MyPageNumberPagination
+from ..utilities.pagination import MyPageNumberPagination
 
 class reviewsViewsets(viewsets.ModelViewSet):
     serializer_class = ReviewsListSerializers
