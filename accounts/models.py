@@ -11,10 +11,11 @@ class CustomUser(AbstractUser):
     is_active = models.BooleanField(default=True)
     is_verified = models.BooleanField(default=False)
     professional_image = models.ImageField(upload_to='profile', null=True, blank=True)
+    position = models.PositiveIntegerField(default=0)
 
-    active_workspace = models.ForeignKey(
-        "workspace.Workspace", on_delete=models.SET_NULL, null=True, blank=True, related_name="active_users"
-    )
+    # active_workspace = models.ForeignKey(
+    #     "workspace.Workspace", on_delete=models.SET_NULL, null=True, blank=True, related_name="active_users"
+    # )
 
     groups = models.ManyToManyField(Group, related_name='customer_groups', blank=True)
 

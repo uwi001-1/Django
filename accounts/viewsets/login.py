@@ -46,7 +46,7 @@ class LoginView(APIView):
             refresh['remember_me'] = request.data.get('remember_me', False)
 
             #Optionally, return user details
-            user_obj = CustomUserReadSerializer(user, context={'request': request}).data
+            user_obj = CustomUserReadSerializer(user, context={'request': request})
             return Response({
                 'access' : str(refresh.access_token),
                 'refresh' : str(refresh),
@@ -56,6 +56,7 @@ class LoginView(APIView):
         
         # If the user is not authenticated, return an error message
         else:
+            # return Response({'error':'Invalid username or password'}, status=status.HTTP_401_UNAUTHORIZED)
             from django.db.models import Q
             user_obj = CustomUser.objects.filter(Q(username=username_or_email) | Q(email=username_or_email))
             if user_obj.exists():

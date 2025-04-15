@@ -38,13 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'drf_yasg',
-    '',
     'rest_framework',
     'author',
     'books',
     'genre',
     'reviews',
     'stock',
+    'accounts',
+    'accountsmanagement',
 ]
 
 REST_FRAMEWORK = {
@@ -142,3 +143,41 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+
+# DJANGO's Cache
+CACHES = {
+    "default":{
+        "BACKEND" : "django.core.cache.backends.locmem.LocMemCache",
+        "LOCATION" : "unique-snowflake",
+    }
+}
+
+#REDIS wala
+# CACHES = {
+#     "default":{
+#         "BACKEND" : "django_redis.cache.RedisCache",
+#         "LOCATION" : "redis://127.0.0.1:47459/1",    # Redis server with custom part
+#         "OPTIONS" :{
+#             'CLIENT_CLASS' : 'django_redis.client.DefaultClient',
+#             'PASSWORD' : '',            # Redis password
+#         }
+#     }
+# }
+
+SIMPLE_JWT ={
+    'ACCESS_TOKEN_LIFETIME' : timedelta(days=30),    
+    'REFRESH_TOKEN_LIFETIME' : timedelta(days=50),    
+    'ROTATE_REFRESH_TOKENS' : False,    
+    'BLACKLIST_AFTER_ROTATION' : False,    
+    'UPDATE_LAST_LOGIN' : False,    
+    'AUTH_HEADER_TYPES' : ("Bearer", "JWT"),    
+    # 'USER_ID_FIELD' : "id",    
+    # 'USER_ID_CLAIM' : "user_id",    
+    'USER_AUTHENTICATION_RULE' : 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+}
